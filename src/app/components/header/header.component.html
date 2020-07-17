@@ -1,0 +1,57 @@
+<header>
+  <p-confirmDialog [header]="confirmationHeaderTitle" icon="pi pi-exclamation-triangle"  [baseZIndex]="10000"></p-confirmDialog>
+  <p-toast></p-toast>
+
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div><a href="https://thinkmicroservices.com" class="navbar-brand">ThinkMicroservices Web-Client-Prime</a></div>
+    <!-- -->
+
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse"
+      data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01" [ngClass]="{ 'show': navbarOpen }">
+      <ul class="navbar-nav mr-auto">
+
+        <!-- logged out menu-->
+        <li><a *ngIf="!authenticationService.isUserLoggedIn()" routerLink="/login" (click)="toggleNavbar()"
+            class="nav-link">Login</a></li>
+
+        <li><a *ngIf="!authenticationService.isUserLoggedIn()" routerLink="/register" (click)="toggleNavbar()"
+            class="nav-link">Register</a></li>
+        <li><a *ngIf="!authenticationService.isUserLoggedIn()" routerLink="/recover-password" (click)="toggleNavbar()"
+            class="nav-link">Recover Password</a></li>
+
+
+        <!-- logged in menu-->
+
+        <li *ngIf="authenticationService.userHasRole('user')"> - </li>
+        <li><a *ngIf="authenticationService.userHasRole('user')" routerLink="/home" (click)="toggleNavbar()"
+            class="nav-link">Home</a></li>
+
+        <li *ngIf="authenticationService.userHasRole('user')"> - </li>
+        <li><a *ngIf="authenticationService.userHasRole('user')" routerLink="/account" (click)="toggleNavbar()"
+            class="nav-link">Account</a></li>
+
+        <li *ngIf="authenticationService.userHasRole('user')"> - </li>
+        <li><a *ngIf="authenticationService.userHasRole('user')" routerLink="/video-call" (click)="toggleNavbar()"
+            class="nav-link"> Video Call <img *ngIf="authenticationService.userHasRole('user')"
+              [src]="signalingConnectionStatusImage" [pTooltip]="signalingConnectionStatusTooltip"> </a></li>
+
+
+        <li *ngIf="authenticationService.userHasRole('admin')"> - </li>
+        <li><a *ngIf="authenticationService.userHasRole('admin')" routerLink="/admin" (click)="toggleNavbar()"
+            class="nav-link">Administration</a></li>
+        <li><a *ngIf="authenticationService.isUserLoggedIn()" routerLink="/logout" (click)="this.logout()"
+            class="nav-link">LogOut</a></li>
+
+        <li *ngIf="authenticationService.isUserLoggedIn()" class="navbar-text">{{this.authenticationService.accountDisplayName}} </li>
+
+      </ul>
+    </div>
+
+
+  </nav>
+</header>

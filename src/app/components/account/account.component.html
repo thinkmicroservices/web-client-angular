@@ -1,0 +1,45 @@
+<p-tabView >
+	<p-tabPanel header="AccountProfile" leftIcon="pi pi-id-card">
+	  <app-profile></app-profile>
+	  <!--
+		
+-->
+	</p-tabPanel>
+	<p-tabPanel header="Account History" leftIcon="pi pi-list">
+		<app-history></app-history>
+		<!-- account history-->
+        <!--
+		<p-table [columns]="cols" [value]="historyEvents" selectionMode="single" [(selection)]="selectedEvent"
+			[lazy]="true" (onLazyLoad)="lazyLoadHistoryEvents($event)" [loading]="loadingFlag" [paginator]="true"
+			[rows]="10" [totalRecords]="totalRecords">
+
+			<ng-template pTemplate="header" let-columns>
+				<tr>
+					<th *ngFor="let col of columns">
+						{{col.header}}
+					</th>
+				</tr>
+			</ng-template>
+			<ng-template pTemplate="body" let-rowData let-columns="columns">
+				<tr>
+					<td *ngFor="let col of columns" (click)="showHistoryEventDetails($event, rowData)">
+						{{rowData[col.field]}}
+					</td>
+				</tr>
+			</ng-template>
+		</p-table>
+		-->
+	</p-tabPanel>
+
+</p-tabView>
+<br>
+<br>
+
+
+
+
+<br>
+
+<br>
+<br>
+

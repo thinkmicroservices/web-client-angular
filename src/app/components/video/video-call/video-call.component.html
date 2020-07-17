@@ -1,0 +1,63 @@
+<div class="p-grid" id="video-container">
+
+	<!-- add an empty column -->
+	<div class="p-col-fixed" style="width:50px"></div>
+
+
+	<!-- notify the user that they dont have a peer signaling connection -->
+	<div class="p-col" *ngIf="connectionStateLabel!='Connected.'" #warning>
+		<div class="container">
+			<div class="jumbotron">
+				<div>
+					<h1><img src='/assets/images/warning-sign.png'> {{connectionStateLabel}}</h1>No Peer Signaling
+					Connection is currently available.
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!-- display the local video feed if a peer signaling connection is available-->
+	<div class="p-col" *ngIf="connectionStateLabel=='Connected.'">
+		<app-video-player #localVideo></app-video-player>
+	</div>
+
+
+	<!-- display the available user list or remote video feed if a peer signaling connection is available-->
+	<div class="p-col" *ngIf="connectionStateLabel=='Connected.'">
+
+		<div [hidden]="hideAvailableUserList">
+			<p-listbox styleClass="availableUsersListbox" [options]="availableUsers" [(ngModel)]="selectedUser"
+			[style]="{'width':'300px'}" [listStyle]="{'max-height': '300px'}"
+			   [multiple]="false" [checkbox]="false" [filter]="true" optionLabel="label"
+				[disabled]="availableUsersDisabled" (onDblClick)="userSelected($event)">
+				<p-header>
+					Available Users
+				</p-header>
+			</p-listbox>
+		 
+		</div>
+
+		<div [hidden]="hideWaitingForCallResponse">
+			<div class="waitingForCallResponse">
+				Calling: {{calleeName}}
+			</div>
+			<button type="text" (click)="cancelCallRequest()" pButton icon="pi pi-check" label="Cancel Call"></button>
+		</div>
+
+		<div [hidden]="hideRemoteVideo">
+			<app-video-player #remoteVideo></app-video-player>
+			<button type="text" (click)="closePeerConnection()" pButton icon="pi pi-check" label="Hangup"></button>
+		</div>
+
+
+	</div>
+
+	<!-- add an empty column -->
+	<div class="p-col-fixed" style="width:f0px"></div>
+
+	<div style="height:20px;">
+		<br /><br />
+	</div>

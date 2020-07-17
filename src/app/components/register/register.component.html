@@ -1,0 +1,55 @@
+<div class="container">
+	<br>
+	<p-toast [style]="{marginTop: '80px'}" position="top-center"></p-toast>
+   <div class="container">
+  <div class="jumbotron">
+    <h1>User Registration</h1>
+    <p>This Page allows your to register a new user.</p>
+  </div>
+
+ <p-dialog [(visible)]="displayDialog" [modal]="true" [style]="{width: '300px', minWidth: '200px'}" >
+    <p-header>
+        Register
+    </p-header> 
+
+  
+  <div><p-messages [(value)]="msgs" [closable] ="false" [key]="'rd'"></p-messages><br>
+    <br>
+    
+   
+      <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+            <input type="text" pInputText placeholder=" First Name"  name="firstName" [(ngModel)]="registrationModel.firstName"  pTooltip="Enter your First name" tooltipPosition="top">         
+        </div>
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+            <input type="text" pInputText placeholder=" Middle Name"  name="middleName" [(ngModel)]="registrationModel.middleName"  pTooltip="Enter your Middle name" tooltipPosition="top">         
+        </div>
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+            <input type="text" pInputText placeholder=" Last Name"  name="last Name" [(ngModel)]="registrationModel.lastName"  pTooltip="Enter your Last name" tooltipPosition="top">         
+        </div>
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+            <input type="text" pInputText placeholder=" Email"  name="email" [(ngModel)]="registrationModel.email"  pTooltip="Enter your email address" tooltipPosition="top">         
+        </div>
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
+            <input type="password"  pInputText placeholder=" Password"  [(ngModel)]="registrationModel.password"   pTooltip="Must contain upper & lower characters, at least one number and one special character." tooltipPosition="top">         
+        </div>
+
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
+            <input type="password"  pInputText placeholder=" Confirm Password"  [(ngModel)]="registrationModel.confirmPassword"   >         
+        </div>
+    </div>
+  </div>
+    <p-footer>
+    
+<button pButton type="button" (click)=registerUser() class="ui-button-raised ui-button-rounded" label="Register"> </button>
+    </p-footer>
+</p-dialog>
+
+ 
+   

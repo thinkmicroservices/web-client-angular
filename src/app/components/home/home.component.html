@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>Demonstration Web Client</h1>
+    <p>This application provides a simple tool to exercise the reference microservices.</p>
+  </div>
+
+</div>
+<div *ngIf="!authenticationService.isUserLoggedIn()">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 " >
+        <div class="card h-100" style="width: 18rem;">
+          <img src="https://angular.io/assets/images/logos/angular/angular.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Angular</h5>
+            <p class="card-text">Angular provides the skeleton on which the client is built.</p>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <div class="card h-100" style="width: 18rem;">
+          <img src="https://i.stack.imgur.com/dMXbE.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Bootstrap</h5>
+            <p class="card-text">Bootstrap provides basic styling to the client.</p>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <div class="card h-100" style="width: 18rem;">
+          <img src="https://i2.wp.com/www.primefaces.org/wp-content/uploads/2018/05/primeng-logo.png?ssl=1"
+            class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">PrimeNG</h5>
+            <p class="card-text">PrimeNG provides a the UI component library.</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+</div>
+<div *ngIf="!!authenticationService.isUserLoggedIn()">
+ 
+
+  <div class="container">
+
+    <div class="col-sm">
+      <div class="card" style="width: 36rem;">
+
+        <div class="card-body">
+          <h5 class="card-title">You have successfully logged in.</h5>
+          <p class="card-text">Use the top-level menu to navigate the applications features.</p>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>

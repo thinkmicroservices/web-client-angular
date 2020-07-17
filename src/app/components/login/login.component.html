@@ -1,0 +1,45 @@
+<div class="container">
+	<br>
+	 <div class="container">
+  <div class="jumbotron">
+    <h1>Account Logon</h1>
+    <p>This Page allows your to Logon to a registered account</p>
+  </div>
+  
+
+ <p-dialog [(visible)]="display" [modal]="true">
+    <p-header>
+        Logon
+    </p-header>
+
+ 
+ <div><p-messages [(value)]="msgs" [closable] ="false"></p-messages><br> 
+  <!--<div class="ui-g ui-fluid"> -->
+    <div class="ui-g-12 ui-md-4"> 
+        <div class="ui-inputgroup">
+          
+            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                              <input  id="float-input" type="text" pInputText  name="email"  placeholder=" Email" [(ngModel)]="email">         
+           
+        </div>
+
+ 
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
+            <input type="password" pInputText placeholder=" Password"  [(ngModel)]="password">         
+        </div>
+
+        <div class="ui-inputgroup">
+        <a class="" routerLink="../recover-password">Forgot&nbsp;Password?</a>
+        </div>
+    </div>
+ 
+  </div>
+
+    <p-footer>  
+ <i class="pi pi-spin pi-spinner " style="font-size: 3em" [hidden]="!showAuthSpinner"></i> 
+<button pButton type="button" (click)=checkLogin() class="ui-button-raised ui-button-rounded " label="Logon" [hidden]="showAuthSpinner"> </button>
+    </p-footer>
+</p-dialog>
+ 
+</div>   

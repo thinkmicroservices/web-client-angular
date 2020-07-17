@@ -1,0 +1,17 @@
+.video-player {
+  background-color: transparent;
+  align: center;
+
+}
+
+p {
+  background-color: white;
+  text-align: center;
+  font-size: 25px;
+}
+
+video {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}

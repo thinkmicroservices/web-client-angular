@@ -1,0 +1,62 @@
+<div class="ui-g ui-fluid">
+
+	<div class="ui-g-12 ui-md-4">
+		<h5>Event Types</h5>
+		<p-listbox [options]="historyEventTypes" [(ngModel)]="historySelectedEventTypes" checkbox="checkbox"
+			[multiple]="true"></p-listbox>
+	</div>
+	<div class="ui-g-12 ui-md-2">
+		<h5>Start Timestamp</h5>
+		<p-calendar [(ngModel)]="eventStartDate" [hideOnDateTimeSelect]="true" [showTime]="true" hourFormat="24"
+			[showIcon]="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2050"></p-calendar>
+
+		<h5>End Timestamp</h5>
+		<p-calendar [(ngModel)]="eventEndDate" [hideOnDateTimeSelect]="true" [showTime]="true" hourFormat="24"
+			[showIcon]="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2050"></p-calendar>
+
+		<h5>Account Id</h5>
+		<input type="text" pInputText [(ngModel)]="this.historyAccountId" />
+	</div>
+
+
+</div>
+<div class="ui-g ui-fluid">
+	<div class="ui-g-12 ui-md-6 d-flex justify-content-end">
+		<p-button icon="pi pi-search" label="Search" (onClick)="refreshEventHistory($event)"></p-button>
+	</div>
+</div>
+
+<p-table [columns]="eventHistoryCols" [value]="historyEvents" selectionMode="single"
+	[(selection)]="historySelectedEvent" [lazy]="true" (onLazyLoad)="lazyLoadHistoryEvents($event)"
+	[loading]="eventHistoryLoadingFlag" [paginator]="true" [rows]="10" [totalRecords]="totalRecords">
+
+	<ng-template pTemplate="header" let-columns>
+		<tr>
+			<th *ngFor="let col of columns">
+				{{col.header}}
+			</th>
+		</tr>
+	</ng-template>
+	<ng-template pTemplate="body" let-rowData let-columns="columns">
+		<tr>
+			<td *ngFor="let col of columns" (click)="showHistoryEventDetails($event, rowData)">
+				{{rowData[col.field]}}
+			</td>
+		</tr>
+	</ng-template>
+</p-table>
+
+<!-- View history event details-->
+
+<p-dialog header="Account Event Details" [(visible)]="eventDetailsVisibleFlag" [modal]="true" [responsive]="true"
+	[style]="{width: '450px', minWidth: '400px', height: '600px',minheight: '200px'}" [minY]="70" [maximizable]="true"
+	[baseZIndex]="10000">
+	<div>
+
+		<pre class="prettyprint">{{this.eventDetailsText | json}}</pre>
+
+
+	</div>
+
+
+</p-dialog>

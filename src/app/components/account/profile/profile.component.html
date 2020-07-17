@@ -1,0 +1,197 @@
+<div class="container">
+
+
+
+	<div class="row" class="row top-buffer">
+
+		<div class="col-md-3">
+			<div class="card" style="width: 24rem;">
+
+				<img src="{{profileImageURL}}?ts={{profileImageTimestamp}}" class="card-img-top" alt="..."
+					appImageFallback="assets/images/silhouette.png">
+
+				<div class="card-body">
+					<h5 class="card-title"><span id="text">Change Profile Image</span></h5>
+					<p class="card-text"> </p>
+
+
+					<p-fileUpload name="file" id="file" url="{{remoteUploadURL}}" accept="image/*" customUpload="true"
+						#form (uploadHandler)="onUpload($event, form)" maxFileSize="1000000">
+
+					</p-fileUpload>
+
+
+
+
+				</div>
+
+
+				<div class="center">
+
+
+					<button pButton (click)="showChangePasswordDialog()" type="button" label="Change Password"
+						class="ui-button-rounded"></button>
+
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-md-3" style=" ">&nbsp;</div>
+
+		<div class="col-md-4">
+			<p-toast [style]="{marginTop: '80px'}" position="top-center"></p-toast>
+
+			<h2 class="text-center">Account Profile</h2>
+			<form>
+
+
+				<div class="form-group">
+					<label for="accountId">Account Id</label>
+
+					<input id="input" type="text" size="30" pInputText [(ngModel)]="profile.accountId" name="accountId"
+						id="accountId" readonly class="form-control">
+				</div>
+
+				<div class="form-group">
+					<label for="email">Email Address</label>
+					<input id="input" type="text" size="30" pInputText [(ngModel)]="profile.email" readonly name="email"
+						id="email" class="form-control">
+
+				</div>
+				<div class="form-group">
+					<label for="phone">Phone Number</label>
+					<input id="input" type="text" size="30" pInputText [(ngModel)]="profile.phone"  name="phone"
+						id="phone" class="form-control">
+
+				</div>
+
+				<div class="form-group">
+					<label for="firstName">First Name</label>
+					<input id="input" type="text" size="30" pInputText [(ngModel)]="profile.firstName" name="firstName"
+						id="firstName" class="form-control" appCapitalize>
+
+				</div>
+
+				<div class="form-group">
+					<label for="middleName">Middle Name</label>
+					<input type="text" size="36" pInputText [(ngModel)]="profile.middleName" placeholder="Middle Name"
+						name="middleName" class="form-control" id="middleName" appCapitalize>
+				</div>
+
+				<div class="form-group">
+					<label for="lastName">Last Name</label>
+					<input type="text" size="36" pInputText [(ngModel)]="profile.lastName" placeholder="Last Name"
+						name="lastName" class="form-control" id="lastName" appCapitalize>
+				</div>
+
+
+
+				<div class="form-group">
+					<label for="primaryStreetAddress">Primary Street Address</label>
+					<input type="text" size="36" pInputText [(ngModel)]="profile.primaryStreetAddress"
+						placeholder="Primary Street Address" name="primaryStreetAddress" class="form-control"
+						id="primaryStreetAddress" appTitleize>
+				</div>
+
+				<div class="form-group">
+					<label for="secondaryStreetAddress">Secondary Street Address</label>
+					<input type="text" size="36" pInputText [(ngModel)]="profile.secondaryStreetAddress"
+						placeholder="Secondary Street Address" name="secondaryStreetAddress" class="form-control"
+						id="secondaryStreetAddress" appTitleize>
+				</div>
+
+				<div class="form-group">
+					<label for="city">City</label>
+					<input type="text" size="36" pInputText [(ngModel)]="profile.city" placeholder="City" name="city"
+						class="form-control" id="city" appTitleize>
+				</div>
+
+				<div class="form-group">
+					<label for="state">State</label>
+
+
+					<p-dropdown [options]="this.states" [(ngModel)]="profile.state" placeholder="State" name="states"
+						[showClear]="true"></p-dropdown>
+				</div>
+
+				<div class="form-group">
+					<label for="postalCode">Postal Code</label>
+					<input type="text" size="36" pInputText [(ngModel)]="profile.postalCode" placeholder="Postal Code"
+						name="postalCode" class="form-control" id="postalCode">
+				</div>
+
+				<div class="form-group">
+
+
+
+					<span><label for="dob">Date of Birth:</label></span><br>
+
+
+					<p-calendar [(ngModel)]="profile.dob" [monthNavigator]="true" [yearNavigator]="true"
+						yearRange="1900:2050" name="dob" dateFormat="mm/dd/yy" placeholder="mm/dd/yy">
+					</p-calendar>
+
+
+
+				</div>
+
+
+			</form>
+
+			<button pButton (click)="updateProfile()" type="button" label="Update" class="ui-button-rounded"></button>
+		</div>
+
+
+
+	</div>
+
+</div>
+
+
+
+
+
+
+<!-- change password dialog-->
+
+<p-dialog header="Change Password" [(visible)]="passwordChangeDialogDisplay" [modal]="true" [responsive]="true"
+	[style]="{width: '350px', minWidth: '200px'}" [minY]="70" [maximizable]="false" [baseZIndex]="10000">
+	<div>
+		<p-messages [key]="'cp'" [(value)]="changePasswordMsgs" [closable]="false"></p-messages>
+		<div class="ui-g-12 ui-md-4">
+
+
+			<div class="form-group">
+				<label for="currentPassword">Current Password</label>
+
+				<input name="currentPassword" type="password" [(ngModel)]="this.changePasswordModel.currentPassword" />
+
+			</div>
+
+			<div class="form-group">
+				<label for="newPassword">New Password</label>
+
+				<input name="newPassword" type="password" [(ngModel)]="this.changePasswordModel.newPassword" />
+
+			</div>
+			<div class="ui-password-panel"></div>
+
+
+
+			<div class="form-group">
+				<label for="confirmPassword">Confirm Password</label>
+				<input type="password" name="confirmPassword"
+					[(ngModel)]="this.changePasswordModel.confirmPassword" /><br>
+
+			</div>
+
+		</div>
+	</div>
+
+	<p-footer>
+		<button type="button" pButton icon="pi pi-check" (click)="changePassword()" label="Change Password"></button>
+		<button type="button" pButton icon="pi pi-close" (click)="cancelChangePassword()" label="Cancel"
+			class="ui-button-secondary"></button>
+	</p-footer>
+</p-dialog>

@@ -1,0 +1,67 @@
+<h1>Discovery Service</h1>
+<p>The service tree can be expanded to display all services registered with the Discovery Service. Selecting
+	service
+	instances (leaf nodes) will display a details dialog.</p>
+<br>
+
+
+<p-tree [value]="applicationServiceTree" [layout]="this.serviceTreeLayout" selectionMode="single"
+	[(selection)]="selectedServiceInstance" (click)="showInstanceDetails($event)"></p-tree>
+<br>
+<div class="ui-g ui-fluid">
+	<div class="ui-g-12 ui-md-2">
+		 
+		<p-toggleButton onLabel="Vertical" offLabel="Horizontal" onIcon="pi pi-arrow-down"			offIcon="pi pi-arrow-right" [(ngModel)]="this.toggleServiceTreeState" (onChange)="changeTreeLayout($event)">
+		</p-toggleButton>
+	 
+	</div>
+</div>
+
+<br>
+
+
+<p-dialog header="Instance Details" [(visible)]="displayInstanceDialog" [resizable]="false" [modal]='true'
+	(onHide)="serviceDialogClose($event)" [style]="{width: '400px', height: '200px'}">
+	<table>
+		<tr>
+			<td><b>Service ID</b></td>
+			<td align="right">
+				<p *ngIf="(this.selectedServiceInstance!=null )&& (this.selectedServiceInstance.leaf==true)">
+					{{this.selectedServiceInstance.data[0].serviceId}}</p>
+			</td>
+		</tr>
+		<tr>
+			<td><b>IP Address</b></td>
+			<td align="right">
+				<p *ngIf="(this.selectedServiceInstance!=null )&& (this.selectedServiceInstance.leaf==true)">
+					{{this.selectedServiceInstance.data[0].instanceInfo.ipAddr}}</p>
+			</td>
+		</tr>
+		<tr>
+			<td><b>Port</b></td>
+			<td align="right">
+				<p *ngIf="(this.selectedServiceInstance!=null )&& (this.selectedServiceInstance.leaf==true)">
+					{{this.selectedServiceInstance.data[0].port}}</p>
+			</td>
+		</tr>
+		<tr>
+			<td><b>Service Uptime</b></td>
+			<td align="right">
+				<p *ngIf="(this.selectedServiceInstance!=null )&& (this.selectedServiceInstance.leaf==true)">
+					{{ this.formatMsToHours(this.selectedServiceInstance.data[0].instanceInfo.leaseInfo.serviceUpTimestamp)}}
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td><b>Last Update</b></td>
+			<td align="right">
+				<p *ngIf="(this.selectedServiceInstance!=null )&& (this.selectedServiceInstance.leaf==true)">
+					{{ this.formatMsToTime(this.selectedServiceInstance.data[0].instanceInfo.leaseInfo.lastUpdatedTimestamp)}}
+				</p>
+			</td>
+
+		</tr>
+
+	</table>
+
+</p-dialog>

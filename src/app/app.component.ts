@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from './services/authentication/authentication.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'web-client';
+
+  constructor(private router: Router,
+    private authService: AuthenticationService) { }
+
+
+  ngOnInit() {
+    this.router.navigate(['/home'])
+  }
 }

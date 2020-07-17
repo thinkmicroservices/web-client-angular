@@ -28,7 +28,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+  "node_modules/primeicons/primeicons.css",
+  "node_modules/primeng/resources/themes/luna-amber/theme.css",
+  "node_modules/primeng/resources/primeng.min.css",
+  "node_modules/primeflex/primeflex.css"
             ],
             "scripts": []
           },
@@ -121,6 +125,41 @@
             "production": {
               "devServerTarget": "web-client:serve:production"
             }
+          }
+        }
+      }
+    },
+    "profile": {
+      "projectType": "library",
+      "root": "projects/profile",
+      "sourceRoot": "projects/profile/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/profile/tsconfig.lib.json",
+            "project": "projects/profile/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/profile/src/test.ts",
+            "tsConfig": "projects/profile/tsconfig.spec.json",
+            "karmaConfig": "projects/profile/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/profile/tsconfig.lib.json",
+              "projects/profile/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
