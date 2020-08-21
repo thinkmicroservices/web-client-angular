@@ -35,10 +35,11 @@ export class TelemetryPublisherService {
   //-----------------------------------
   getLoggingLevel() {
     //var id = this.authenticationService.getAccountId();
-    var url = this.apiService.getTelemetryService() + "/level/sss";
+    var url = this.apiService.getTelemetryService() + "/level/no-user";
     console.log("url", url);
     // if (id !== null) {
-    var httpOptions = { headers: new HttpHeaders({ 'authExempt': 'true' }) };
+   var httpOptions = { headers: new HttpHeaders({ 'authExempt': 'true' }) };
+   
     this.httpClient.get<any>(url, httpOptions).subscribe(data => {
       console.log("remote logging level", data);
       // return data;
@@ -55,7 +56,8 @@ export class TelemetryPublisherService {
   if(accountId ){
      // console.log("sendLogEvent",ts,message.toString());
     var url = this.apiService.getTelemetryService() + "/log";
-    var httpOptions = { headers: new HttpHeaders({ 'authExempt': 'true' }) };
+    //var httpOptions = { headers: new HttpHeaders({ 'authExempt': 'true' }) };
+    var httpOptions = { headers: new HttpHeaders({ 'logging': 'true' }) };
     var opt:string[]=[];
 
     if(optional!= null){
