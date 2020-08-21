@@ -100,7 +100,7 @@ export class AuthenticationService {
 
           // connect to the peer signaling service
 
-          this.signalingService.connect();
+          this.signalingService.connect(this.getJWTToken(),this.getAccountId());
 
           return userData;
         }
@@ -257,7 +257,7 @@ export class AuthenticationService {
       return false;
     } else {
       // reconnect to the signaling service
-      this.signalingService.connect();
+      this.signalingService.connect(this.getJWTToken(),this.getAccountId());
       return true;
     }
   }
