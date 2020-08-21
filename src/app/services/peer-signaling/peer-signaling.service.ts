@@ -13,7 +13,7 @@ export class PeerSignalingService { // rename to PeerSignalingService
   private DISCONNECTED = false;
 
   private signalingConnectionRetryCounter: number = 0;
-
+ private accountId:string;
 
 
   // websocket connection
@@ -95,8 +95,9 @@ export class PeerSignalingService { // rename to PeerSignalingService
 
   // initiate a connection to the signaling service
 
-  connect() {
+   connect(jwtToken,accountId) {
 
+    this.accountId=accountId;
     // guard against reconnection when already connected
     if ((this.signalingConnection != null) &&
       ((this.signalingConnection.readyState === WebSocket.CONNECTING) || (this.signalingConnection.readyState == WebSocket.OPEN))
@@ -111,8 +112,9 @@ export class PeerSignalingService { // rename to PeerSignalingService
     this.notifyConnectionStatusChange(PeerSignalingConnectionStatus.CONNECTING);
 
     // create connection
-    this.signalingConnection = new WebSocket(this.apiService.getSignalingService());
-
+    this.signalingConnection = new WebSocket(this.apiService.getSignalingService(),
+    ["authorization",jwtToken ] );
+ 
 
     // connection has been opened
     this.signalingConnection.onopen = this.onSignalingConnectionOpen.bind(this);
